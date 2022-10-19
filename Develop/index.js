@@ -62,14 +62,6 @@ function promptUser() {
         {
 
             type: 'input',
-            name: 'siteLocation',
-            message: questions[5]
-
-        },
-
-        {
-
-            type: 'input',
             name: 'version',
             message: questions[6]
 
@@ -79,7 +71,7 @@ function promptUser() {
 
             type: 'list',
             name: 'license',
-            message: questions[6],
+            message: questions[7],
             choices: ['APACHE', 'BSD', 'GPL', 'MIT', 'N/A'],
         
         },
