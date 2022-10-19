@@ -1,8 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs       = require('fs');
-const util    = require('util');
-const { getEnabledCategories } = require('trace_events');
+const util     = require('util');
 let licBadge   = '';
 
 // TODO: Create an array of questions for user input
@@ -92,11 +91,29 @@ function promptUser() {
 
 function getLicense (res) {
 
+    if (res.license == "APACHE") {
+        
+        licBadge = "[![License: APACHE](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0";
+    
+    } 
+
+    if (res.license == "BSD") {
+        
+        licBadge = "[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
+    
+    }
+
+    if (res.license == "GPL") {
+        
+        licBadge = "[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)";
+    
+    }
+    
     if (res.license == "MIT") {
         
         licBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
     
-    } 
+    }
     
     return licBadge;
 
@@ -107,10 +124,17 @@ function getReadme (res) {
     return `
     
     # ${res.projectName}
+    # ${licBadge}
 
-    ## Getting Started
+    ## Description
     ${res.description}
-    
+
+    ## Table of contents
+    *[Dependencies](#dependencies)
+    *[Execution](#installation)
+    *[Contributors](#contributors)
+    *[Version](#version)
+    *[License](#license)
 
     ### Dependencies
     ${res.dependencies}
@@ -118,17 +142,16 @@ function getReadme (res) {
     ### Executing the program
     ${res.siteLocation}
 
-    ## Authors
-
-    Contributors and contact information
+    ## Contributors
     ${res.username}
     
-    ## Version History
+    ## Version
     ${res.version}
     
     ## License
+    ${res.license}
     
-    This project is licensedunder the MIT License - see the LICEWNSE.md file for details`
+    This project is licensed under the ${res.license} license.`
 
 }
 
