@@ -1,8 +1,9 @@
 // TODO: Include packages needed for this application
-const inquirer = require('inquirer');
-const fs       = require('fs');
-const util     = require('util');
-let licBadge   = '';
+const inquirer         = require('inquirer');
+const fs               = require('fs');
+const util             = require('util');
+const generateMarkdown = require('./generateMarkdown');
+// let licBadge   = '';
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -88,69 +89,69 @@ function promptUser() {
 }
 
 
-function getLicense (res) {
+// function getLicense (res) {
 
-    if (res.license == "APACHE") {
+//     if (res.license == "APACHE") {
         
-        licBadge = "[![License: APACHE](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0";
+//         licBadge = "[![License: APACHE](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0";
     
-    } 
+//     } 
 
-    if (res.license == "BSD") {
+//     if (res.license == "BSD") {
         
-        licBadge = "[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
+//         licBadge = "[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
     
-    }
+//     }
 
-    if (res.license == "GPL") {
+//     if (res.license == "GPL") {
         
-        licBadge = "[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)";
+//         licBadge = "[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)";
     
-    }
+//     }
     
-    if (res.license == "MIT") {
+//     if (res.license == "MIT") {
         
-        licBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+//         licBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
     
-    }
+//     }
     
-    return licBadge;
+//     return licBadge;
 
-}
+// }
 
-function getReadme (res) {
+// function getReadme (res) {
 
-    return `
+//     return `
     
-    # ${res.projectName}
-    # ${licBadge}
+//     # ${res.projectName}
+//     # ${licBadge}
 
-    ## Description
-    ${res.description}
+//     ## Description
+//     ${res.description}
 
-    ## Table of contents
-    *[Dependencies](#dependencies)
-    *[Execution](#installation)
-    *[Contributors](#contributors)
-    *[Version](#version)
-    *[License](#license)
+//     ## Table of contents
+//     *[Dependencies](#dependencies)
+//     *[Execution](#installation)
+//     *[Contributors](#contributors)
+//     *[Version](#version)
+//     *[License](#license)
 
-    ### Dependencies
-    ${res.dependencies}
+//     ### Dependencies
+//     ${res.dependencies}
 
-    ### Executing the program
-    ${res.execution}
+//     ### Executing the program
+//     ${res.execution}
 
-    ## Contributors
-    ${res.username} ${res.email}
+//     ## Contributors
+//     ${res.username} ${res.email}
     
-    ## Version
-    ${res.version}
+//     ## Version
+//     ${res.version}
     
-    ## License
-    This project is licensed under the ${res.license} license.`
+//     ## License
+//     This project is licensed under the ${res.license} license.`
 
-}
+// }
 
 const writeFileAsync = util.promisify(fs.writeFile, '');
 
@@ -161,11 +162,11 @@ async function init() {
 
         const res = await promptUser();
 
-        getLicense(res);
+        // getLicense(res);
 
-        const rmFile = getReadme(res);
-        console.log(rmFile);
-        await writeFileAsync("../README.md", rmFile);
+        // const rmFile = getReadme(res);  
+        // console.log(rmFile);
+        await writeFileAsync("./test-README.md", generateMarkdown({...res}));
 
         console.log("README.md file created successfully");
         
