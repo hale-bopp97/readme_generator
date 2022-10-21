@@ -96,7 +96,7 @@ async function init() {
 
         const res = await promptUser();
 
-        await writeFileAsync("../README.md", generateMarkdown({...res}));
+        await writeFileAsync("./test-README.md", generateMarkdown({...res}));
 
         console.log("README.md file created successfully");
         
