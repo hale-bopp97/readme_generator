@@ -3,12 +3,11 @@ const inquirer         = require('inquirer');
 const fs               = require('fs');
 const util             = require('util');
 const generateMarkdown = require('./generateMarkdown');
-// let licBadge   = '';
 
 // TODO: Create an array of questions for user input
 const questions = [
     'Username: ', 
-    'Email address: ', 
+    'GitHub: ', 
     'Project name: ',
     'Project description: ',
     'Dependencies: ',
@@ -88,71 +87,6 @@ function promptUser() {
 
 }
 
-
-// function getLicense (res) {
-
-//     if (res.license == "APACHE") {
-        
-//         licBadge = "[![License: APACHE](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0";
-    
-//     } 
-
-//     if (res.license == "BSD") {
-        
-//         licBadge = "[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
-    
-//     }
-
-//     if (res.license == "GPL") {
-        
-//         licBadge = "[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)";
-    
-//     }
-    
-//     if (res.license == "MIT") {
-        
-//         licBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
-    
-//     }
-    
-//     return licBadge;
-
-// }
-
-// function getReadme (res) {
-
-//     return `
-    
-//     # ${res.projectName}
-//     # ${licBadge}
-
-//     ## Description
-//     ${res.description}
-
-//     ## Table of contents
-//     *[Dependencies](#dependencies)
-//     *[Execution](#installation)
-//     *[Contributors](#contributors)
-//     *[Version](#version)
-//     *[License](#license)
-
-//     ### Dependencies
-//     ${res.dependencies}
-
-//     ### Executing the program
-//     ${res.execution}
-
-//     ## Contributors
-//     ${res.username} ${res.email}
-    
-//     ## Version
-//     ${res.version}
-    
-//     ## License
-//     This project is licensed under the ${res.license} license.`
-
-// }
-
 const writeFileAsync = util.promisify(fs.writeFile, '');
 
 // TODO: Create a function to initialize app
@@ -162,11 +96,7 @@ async function init() {
 
         const res = await promptUser();
 
-        // getLicense(res);
-
-        // const rmFile = getReadme(res);  
-        // console.log(rmFile);
-        await writeFileAsync("./test-README.md", generateMarkdown({...res}));
+        await writeFileAsync("../README.md", generateMarkdown({...res}));
 
         console.log("README.md file created successfully");
         

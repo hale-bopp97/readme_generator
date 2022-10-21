@@ -11,11 +11,11 @@ function generateMarkdown(res) {
 ${res.description}
 
 ## Table of contents
-*[Dependencies](#dependencies)
-*[Execution](#installation)
-*[Contributors](#contributors)
-*[Version](#version)
-*[License](#license)
+*[Dependencies](#dependencies)  
+*[Execution](#installation)  
+*[Contributors](#contributors)  
+*[Version](#version)  
+*[License](#license)  
 
 ### Dependencies
 ${res.dependencies}
