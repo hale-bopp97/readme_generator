@@ -11,6 +11,7 @@ const questions = [
     'Project name: ',
     'Project description: ',
     'Dependencies: ',
+    'Execution: ',
     'Version',
     'License: '
 ];
@@ -57,6 +58,12 @@ function promptUser() {
             name: 'dependencies',
             message: questions[4]
 
+        },
+
+        {
+            type: 'input',
+            name: 'execution',
+            message: questions[5]
         },
 
         {
@@ -132,17 +139,15 @@ function getReadme (res) {
     ${res.dependencies}
 
     ### Executing the program
-    ${res.siteLocation}
+    ${res.execution}
 
     ## Contributors
-    ${res.username}
+    ${res.username} ${res.email}
     
     ## Version
     ${res.version}
     
     ## License
-    ${res.license}
-    
     This project is licensed under the ${res.license} license.`
 
 }
@@ -160,7 +165,7 @@ async function init() {
 
         const rmFile = getReadme(res);
         console.log(rmFile);
-        await writeFileAsync("./README.md", rmFile);
+        await writeFileAsync("../README.md", rmFile);
 
         console.log("README.md file created successfully");
         
