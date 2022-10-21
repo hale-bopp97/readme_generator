@@ -7,11 +7,11 @@
 it's stinky
 
 ## Table of contents
-*[Dependencies](#dependencies)
-*[Execution](#installation)
-*[Contributors](#contributors)
-*[Version](#version)
-*[License](#license)
+*[Dependencies](#dependencies)  
+*[Execution](#installation)  
+*[Contributors](#contributors)  
+*[Version](#version)  
+*[License](#license)  
 
 ### Dependencies
 dunnu?!
